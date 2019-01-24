@@ -3,5 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Model instantiation' do
+    subject(:new_user) { described_class.new }
+
+    describe 'Database' do
+      it { is_expected.to have_db_column(:email).of_type(:string).with_options(null: false, default: "") }
+    end
+  end
 end
