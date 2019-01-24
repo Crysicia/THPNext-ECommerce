@@ -1,0 +1,8 @@
+example_id                               | status  | run_time        |
+---------------------------------------- | ------- | --------------- |
+./spec/models/category_spec.rb[1:1]      | pending | 0.00001 seconds |
+./spec/models/item_category_spec.rb[1:1] | pending | 0 seconds       |
+./spec/models/item_spec.rb[1:1]          | pending | 0.00001 seconds |
+./spec/models/item_wishlist_spec.rb[1:1] | pending | 0 seconds       |
+./spec/models/profile_spec.rb[1:1]       | pending | 0.00001 seconds |
+./spec/models/wishlist_spec.rb[1:1]      | pending | 0 seconds       |
