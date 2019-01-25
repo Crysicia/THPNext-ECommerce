@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
@@ -12,7 +14,7 @@ RSpec.describe Category, type: :model do
   end
 
   describe 'Association' do
-    it { should have_many(:item_categories) }
-    it { should have_many(:items).through(:item_categories) }
+    it { is_expected.to have_many(:item_categories) }
+    it { is_expected.to have_many(:items).through(:item_categories) }
   end
 end

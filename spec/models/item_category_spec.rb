@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ItemCategory, type: :model do
-
   describe 'Database' do
     subject(:new_item) { described_class.new }
 

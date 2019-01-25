@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Wishlist, type: :model do
@@ -9,7 +11,7 @@ RSpec.describe Wishlist, type: :model do
   end
 
   describe 'Association' do
-    it { should have_many(:item_wishlists) }
-    it { should have_many(:items).through(:item_wishlists) }
+    it { is_expected.to have_many(:item_wishlists) }
+    it { is_expected.to have_many(:items).through(:item_wishlists) }
   end
 end
