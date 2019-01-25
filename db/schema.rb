@@ -10,9 +10,67 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_01_25_093320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_categories", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_item_categories_on_category_id"
+    t.index ["item_id", "category_id"], name: "index_item_categories_on_item_id_and_category_id", unique: true
+    t.index ["item_id"], name: "index_item_categories_on_item_id"
+  end
+
+  create_table "item_wishlists", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "wishlist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id", "wishlist_id"], name: "index_item_wishlists_on_item_id_and_wishlist_id", unique: true
+    t.index ["item_id"], name: "index_item_wishlists_on_item_id"
+    t.index ["wishlist_id"], name: "index_item_wishlists_on_wishlist_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.float "original_price", null: false
+    t.string "photo"
+    t.integer "quantity", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "has_discount", default: false
+    t.integer "discount_percentage", default: 0
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "adress_1", null: false
+    t.string "adress_2"
+    t.integer "postcode", null: false
+    t.string "region"
+    t.string "city", null: false
+    t.string "country", null: false
+    t.string "telephone", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
