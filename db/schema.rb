@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_165333) do
+ActiveRecord::Schema.define(version: 2019_01_25_093320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.string "name", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,24 +43,27 @@ ActiveRecord::Schema.define(version: 2019_01_24_165333) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.float "price"
+    t.string "name", null: false
+    t.text "description", null: false
+    t.float "original_price", null: false
     t.string "photo"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "has_discount", default: false
+    t.integer "discount_percentage", default: 0
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "adress_1", null: false
     t.string "adress_2"
-    t.integer "postcode"
+    t.integer "postcode", null: false
     t.string "region"
-    t.string "city"
-    t.string "country"
-    t.string "telephone"
+    t.string "city", null: false
+    t.string "country", null: false
+    t.string "telephone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
