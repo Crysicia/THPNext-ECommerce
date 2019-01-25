@@ -1,5 +1,25 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: profiles
+#
+#  id               :bigint(8)        not null, primary key
+#  first_name       :string           not null
+#  last_name        :string           not null
+#  adress_1         :string           not null
+#  adress_2         :string
+#  postcode         :integer          not null
+#  region           :string
+#  city             :string           not null
+#  country          :string           not null
+#  telephone        :string           not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  profileable_type :string
+#  profileable_id   :bigint(8)
+#
+
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
@@ -18,5 +38,10 @@ RSpec.describe Profile, type: :model do
     it { is_expected.to have_db_column(:telephone).of_type(:string).with_options(null: false) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
+  end
+
+  describe 'Associations' do
+    it { is_expected.to have_one(:wishlist) }
+    it { is_expected.to belong_to(:profileable) }
   end
 end
