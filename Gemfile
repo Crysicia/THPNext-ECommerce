@@ -8,7 +8,6 @@ File.read('./.ruby-version')
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.2', '>= 4.2.1'
 gem 'coffee-rails', '~> 4.2'
-gem 'devise'
 # May be used in production to populate our database
 gem 'faker', '~> 1.9', '>= 1.9.1'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
