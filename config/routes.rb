@@ -3,9 +3,24 @@
 Rails.application.routes.draw do
   root 'items#index'
 
-  resources :items
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    confirmations: 'users/confirmations',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords',
+    unlocks: 'users/unlocks'
+  }
 
-  devise_for :admins
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :admin, controllers: {
+    sessions: 'admins/sessions',
+    confirmations: 'admins/confirmations',
+    registrations: 'admins/registrations',
+    passwords: 'admins/passwords',
+    unlocks: 'admins/unlocks'
+  }
+
+  namespace 'administration' do
+  end
+
+  resources :items
 end
