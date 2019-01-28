@@ -1,0 +1,15 @@
+<h1><%= @item.name %></h1>
+
+<table>
+  <tr>
+    <td>
+      <em> <%= @item.description %><br> </em>
+    </td>
+    <td>
+      <%= @item.original_price.round(2) %> €<br>
+    </td>
+    <td>
+      <img src="<%=@item.photo%>"><br><br>
+    </td>
+  </tr>
+</table>

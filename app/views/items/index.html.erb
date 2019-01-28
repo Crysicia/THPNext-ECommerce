@@ -1,0 +1,23 @@
+<h1>Greenie</h1>
+
+<table>
+
+<% @items.each do |item| %>
+  <tr>
+    <td>
+      <%#= item.name %><!-- <br> -->
+      <%= link_to item.name, item_path(item) %>
+    </td>
+    <td>
+      <em> <%= item.description %><br> </em>
+    </td>
+    <td>
+      <%= item.original_price.round(2) %> €<br>
+    </td>
+    <td>
+      <img src="<%=item.photo%>"><br><br>
+    </td>
+  </tr>
+<% end %>
+
+</table>
