@@ -13,5 +13,7 @@
 
 FactoryBot.define do
   factory :item_wishlist do
+    item
+    wishlist
   end
 end

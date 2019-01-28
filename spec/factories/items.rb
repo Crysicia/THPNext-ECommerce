@@ -18,10 +18,23 @@
 
 FactoryBot.define do
   factory :item do
-    name { "MyString" }
-    description { "MyText" }
-    original_price { 1.5 }
-    photo { "MyString" }
-    quantity { 1 }
+    name           { Faker::Cannabis.buzzword }
+    description    { Faker::VForVendetta.quote }
+    original_price { Faker::Number.decimal(2) }
+    photo          { Faker::LoremPixel.image }
+    quantity       { Faker::Number.decimal(3) }
+    has_discount   { Faker::Boolean.boolean }
+    discount_percentage { Faker::Number.between(10, 50) }
+
+    trait :with_discount do
+      has_discount { true }
+    end
+
+    trait :without_discount do
+      has_discount { false }
+    end
+
+    factory :item_with_discount, traits: %i[with_discount]
+    factory :item_without_discount, traits: %i[without_discount]
   end
 end

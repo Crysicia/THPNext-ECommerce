@@ -22,14 +22,20 @@
 
 FactoryBot.define do
   factory :profile do
-    first_name { "MyString" }
-    last_name { "MyString" }
-    adress_2 { "MyString" }
-    adress_2 { "MyString" }
-    postcode { 1 }
-    region { "MyString" }
-    city { "MyString" }
-    country { "MyString" }
-    telephone { "MyString" }
+    first_name   { Faker::Name.first_name }
+    last_name    { Faker::Name.last_name }
+    adress_1     { Faker::Address.street_address }
+    adress_2     { Faker::Address.secondary_address }
+    postcode     { Faker::Number.between(10_000, 99_000) }
+    region       { Faker::Address.state }
+    city         { Faker::Address.city }
+    country      { Faker::Address.country }
+    telephone    { Faker::PhoneNumber.phone_number }
+
+    after(:create) do |profile|
+      create(:wishlist, profile: profile)
+    end
+
+    association :profileable, factory: :user
   end
 end

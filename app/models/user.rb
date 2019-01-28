@@ -23,4 +23,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_one :profile, as: :profileable, dependent: :destroy
+  has_one :wishlist, through: :profile
 end
