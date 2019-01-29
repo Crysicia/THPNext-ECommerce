@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :cart do
-    user { nil }
-    item { nil }
-    quantity { 1 }
+    user
+    item
+    quantity { Faker::Number.between(1, 50) }
   end
 end
