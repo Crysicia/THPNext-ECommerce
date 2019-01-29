@@ -3,6 +3,10 @@
 Rails.application.routes.draw do
   root 'items#index'
 
+  namespace :administration do
+    resources :items
+  end
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',
@@ -18,9 +22,4 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords',
     unlocks: 'admins/unlocks'
   }
-
-  namespace 'administration' do
-  end
-
-  resources :items
 end
