@@ -12,6 +12,7 @@
 
 class Wishlist < ApplicationRecord
   belongs_to :profile
+  has_one :user, through: :profile, source: :profileable, source_type: 'User'
   has_many :item_wishlists, dependent: :destroy
   has_many :items, through: :item_wishlists
 end

@@ -19,5 +19,19 @@
 
 FactoryBot.define do
   factory :admin do
+    password = Faker::Internet.password
+    email                 { Faker::Internet.email }
+    password              { password }
+    password_confirmation { password }
+
+    trait :confirmed do
+      confirmed_at { Time.current }
+    end
+
+    after(:create) do |_user|
+      create(:profile, profileable: admin)
+    end
+
+    factory :admin_confirmed, traits: %i[confirmed]
   end
 end
