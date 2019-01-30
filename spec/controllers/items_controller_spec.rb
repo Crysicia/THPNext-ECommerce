@@ -3,12 +3,27 @@
 require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
-  describe "GET #index" do
+  describe "GET #" do
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
     end
   end
 
-  # it { should route(:get, '/items/1').to(action: :show, id: 1) }
+  describe "GET #show/:id" do
+    it "returns http success" do
+      item = FactoryBot.create(:item)
+
+      get :show, params: { id: item.id } # id: item.id
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET #show/1" do
+    # it "routes a named route" do
+    #   expect(:get => item_path).to route_to(:controller => "items", :action => "new")
+    # end
+
+    it { is_expected.to route(:get, '/items/1').to(action: :show, id: 1) }
+  end
 end
