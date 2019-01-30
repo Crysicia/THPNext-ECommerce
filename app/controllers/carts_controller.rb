@@ -13,7 +13,10 @@ class CartsController < ApplicationController
     if params[:type].casecmp("increment").zero?
       @cart.find_or_create_by(item: item).increment(:quantity, quantity).save
     else
-      @cart.find_or_create_by(item: item).decrement(:quantity, quantity).save
+      new_cart_item = @cart.find_or_create_by(item: item)
+      new_cart_item.decrement(:quantity, quantity)
+      new_cart_item.quantity = 1 if new_cart_item.quantity < 1
+      new_cart_item.save
     end
   end
 

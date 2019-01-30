@@ -11,7 +11,7 @@ RSpec.describe CartsController, type: :controller do
   end
 
   before do
-    @cart = create(:cart, user: user, item: item, quantity: 1)
+    @cart = create(:cart, user: user, item: item, quantity: 50)
   end
 
   describe 'GET #show' do
@@ -35,13 +35,13 @@ RSpec.describe CartsController, type: :controller do
       it 'fails to increment' do
         put :update, params: params_increment
         @cart.reload
-        expect(@cart.quantity).to eq(1)
+        expect(@cart.quantity).to eq(50)
       end
 
       it 'fails to decrement' do
         put :update, params: params_decrement
         @cart.reload
-        expect(@cart.quantity).to eq(1)
+        expect(@cart.quantity).to eq(50)
       end
     end
 
@@ -51,13 +51,19 @@ RSpec.describe CartsController, type: :controller do
       it 'succeeds to increment' do
         put :update, params: params_increment
         @cart.reload
-        expect(@cart.quantity).to eq(43)
+        expect(@cart.quantity).to eq(92)
       end
 
       it 'succeeds to decrement' do
         put :update, params: params_decrement
         @cart.reload
-        expect(@cart.quantity).to eq(-41)
+        expect(@cart.quantity).to eq(8)
+      end
+
+      it 'can\'t decrement below 1' do
+        put :update, params: { item: item, quantity: 1337, type: "decrement" }
+        @cart.reload
+        expect(@cart.quantity).to eq(1)
       end
     end
   end
