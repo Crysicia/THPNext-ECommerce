@@ -12,7 +12,7 @@ RSpec.describe ItemsController, type: :controller do
 
   describe "GET #show/:id" do
     it "returns http success" do
-      item = FactoryBot.create(:item)
+      let(:item) { create(:item) }
 
       get :show, params: { id: item.id }
       expect(response).to have_http_status(:success)
