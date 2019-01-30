@@ -10,7 +10,7 @@ class CartsController < ApplicationController
     item = params[:item].to_i
     quantity = params[:quantity].to_i
 
-    if params[:type].downcase == "increment"
+    if params[:type].casecmp("increment").zero?
       @cart.find_or_create_by(item: item).increment(:quantity, quantity).save
     else
       @cart.find_or_create_by(item: item).decrement(:quantity, quantity).save
