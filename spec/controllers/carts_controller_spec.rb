@@ -28,19 +28,52 @@ RSpec.describe CartsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:params) { { item: item, quantity: 42, type: "increment" } }
+    let(:params_increment) { { item: item, quantity: 42, type: "increment" } }
+    let(:params_decrement) { { item: item, quantity: 42, type: "decrement" } }
 
-    it 'fails w/o an authenticated user' do
-      put :update, params: params
-      @cart.reload
-      expect(@cart.quantity).to eq(1)
+    context 'when not authentified' do
+      it 'fails to increment' do
+        put :update, params: params_increment
+        @cart.reload
+        expect(@cart.quantity).to eq(1)
+      end
+
+      it 'fails to decrement' do
+        put :update, params: params_decrement
+        @cart.reload
+        expect(@cart.quantity).to eq(1)
+      end
     end
 
-    it 'succeeds w/ an authenticated user' do
-      login_user
-      put :update, params: params
-      @cart.reload
-      expect(@cart.quantity).to eq(43)
+    context 'when authentified' do
+      before { login_user }
+
+      it 'succeeds to increment' do
+        put :update, params: params_increment
+        @cart.reload
+        expect(@cart.quantity).to eq(43)
+      end
+
+      it 'succeeds to decrement' do
+        put :update, params: params_decrement
+        @cart.reload
+        expect(@cart.quantity).to eq(-41)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    context 'when not authentified' do
+      it 'fails to destroy' do
+        expect { delete :destroy, params: { item: @cart.item } }.to change(Cart, :count).by(0)
+      end
+    end
+
+    context 'when authentified' do
+      it 'succeeds to destroy' do
+        login_user
+        expect { delete :destroy, params: { item: @cart.item } }.to change(Cart, :count).by(-1)
+      end
     end
   end
 end
