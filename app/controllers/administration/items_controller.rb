@@ -2,8 +2,6 @@
 
 module Administration
   class ItemsController < ApplicationController
-    # binding.pry
-
     def index
       @items = Item.all
     end
