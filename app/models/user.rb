@@ -26,4 +26,9 @@ class User < ApplicationRecord
   has_one :wishlist, through: :profile
   has_many :carts, dependent: :destroy
   has_many :items, through: :carts
+  include Notifications
+
+  def offer(text)
+    UserMailer.offer(self, text).deliver_later
+  end
 end
