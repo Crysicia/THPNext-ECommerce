@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_112242) do
+ActiveRecord::Schema.define(version: 2019_01_31_152015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,15 +80,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_112242) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "adress_1", null: false
+    t.string "first_name", default: "0", null: false
+    t.string "last_name", default: "0", null: false
+    t.string "adress_1", default: "0", null: false
     t.string "adress_2"
-    t.integer "postcode", null: false
+    t.integer "postcode", default: 0, null: false
     t.string "region"
-    t.string "city", null: false
-    t.string "country", null: false
-    t.string "telephone", null: false
+    t.string "city", default: "0", null: false
+    t.string "country", default: "0", null: false
+    t.string "telephone", default: "0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profileable_type"
