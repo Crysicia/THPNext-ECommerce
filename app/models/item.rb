@@ -17,13 +17,8 @@
 #
 
 class Item < ApplicationRecord
-  # binding.pry
   has_many :item_categories, dependent: :destroy
   has_many :item_wishlists, dependent: :destroy
   has_many :categories, through: :item_categories
   has_many :wishlists, through: :item_wishlists
-
-  def original_price
-    1.00
-  end
 end

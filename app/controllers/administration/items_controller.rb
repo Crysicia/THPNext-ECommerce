@@ -2,7 +2,7 @@
 
 module Administration
   class ItemsController < ApplicationController
-    # bindin.pry
+    # binding.pry
 
     def index
       @items = Item.all
@@ -16,10 +16,6 @@ module Administration
       @item = Item.new
     end
 
-    def edit
-      @item = Item.find(params[:id])
-    end
-
     def create
       @item = Item.new(item_params)
 
@@ -29,6 +25,10 @@ module Administration
       else
         render 'new'
       end
+    end
+
+    def edit
+      @item = Item.find(params[:id])
     end
 
     def update
@@ -43,7 +43,7 @@ module Administration
     end
 
     def destroy
-      @item = @item.find(params[:id])
+      @item = item.find(params[:id])
       @item.destroy
       redirect_to item_path
     end
@@ -51,7 +51,7 @@ module Administration
     private
 
     def item_params
-      params.require(:item).permit(:price)
+      params.require(:item).permit(:name, :description, :original_price, :photo, :quantity, :has_discount, :discount_percentage)
     end
   end
 end
