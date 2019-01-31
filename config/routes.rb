@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   namespace 'administration' do
   end
 
+  resources :charges
   resources :items
 end
