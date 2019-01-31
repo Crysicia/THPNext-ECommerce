@@ -4,30 +4,19 @@ require 'rails_helper'
 
 RSpec.describe ProfilesController, type: :controller do
   describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
+    it "should fail when not authentified"
+    it "should succeed when authentified"
   end
 
   describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
+    it "should fail when not authentified"
+    it "should succeed when authentified"
   end
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
-    end
+  describe "POST #update" do
+    it "should fail when not authentified"
+    it "should fail when not all fields are populated"
+    it "should succeed when authentified"
+    it "should redirect to profile"
   end
 end
