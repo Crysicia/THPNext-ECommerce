@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :administration do
     resources :items
   end
-  
+
   resource :cart, only: %i[show update destroy]
   resources :charges
   resources :items
