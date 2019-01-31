@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   }
 
   resource :cart, only: %i[show update destroy]
+  resource :profile, only: %i[show edit update destroy]
 
   namespace 'administration' do
   end

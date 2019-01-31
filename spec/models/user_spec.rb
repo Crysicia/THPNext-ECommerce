@@ -15,6 +15,11 @@
 #  confirmation_sent_at   :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
 #
 
 require 'rails_helper'
@@ -42,6 +47,10 @@ RSpec.describe User, type: :model do
       it { is_expected.to have_one(:wishlist).through(:profile) }
       it { is_expected.to have_many(:carts).dependent(:destroy) }
       it { is_expected.to have_many(:items).through(:carts) }
+    end
+
+    describe 'After create' do
+      it 'Should have a profile'
     end
   end
 end
