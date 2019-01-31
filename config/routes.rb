@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     unlocks: 'admins/unlocks'
   }
 
+  resource :cart, only: %i[show update destroy]
+
   namespace 'administration' do
   end
 
