@@ -12,5 +12,10 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require jquery
+//= require jquery_ujs
+//= require app
+//= require maps
+//= require forms
+//= require tables
 //= require_tree .

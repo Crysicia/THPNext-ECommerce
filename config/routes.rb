@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  resource :cart, only: %i[show update destroy]
+  resources :items
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',
