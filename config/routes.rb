@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resource :cart, only: %i[show update destroy]
+  resource :profile, only: %i[show edit update destroy]
   resources :charges
   resources :items
 

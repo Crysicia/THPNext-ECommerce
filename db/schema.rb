@@ -99,15 +99,15 @@ ActiveRecord::Schema.define(version: 2019_01_31_175941) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "adress_1", null: false
+    t.string "first_name", default: "0", null: false
+    t.string "last_name", default: "0", null: false
+    t.string "adress_1", default: "0", null: false
     t.string "adress_2"
-    t.integer "postcode", null: false
+    t.integer "postcode", default: 0, null: false
     t.string "region"
-    t.string "city", null: false
-    t.string "country", null: false
-    t.string "telephone", null: false
+    t.string "city", default: "0", null: false
+    t.string "country", default: "0", null: false
+    t.string "telephone", default: "0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profileable_type"
@@ -126,6 +126,11 @@ ActiveRecord::Schema.define(version: 2019_01_31_175941) do
     t.datetime "confirmation_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
