@@ -27,4 +27,10 @@ class User < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :items, through: :carts
   has_many :orders, dependent: :destroy
+  
+  include Notifications
+
+  def offer(text)
+    UserMailer.offer(self, text).deliver_later
+  end
 end
