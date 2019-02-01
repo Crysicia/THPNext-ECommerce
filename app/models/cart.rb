@@ -17,7 +17,6 @@ class Cart < ApplicationRecord
   belongs_to :item
 
   def price
-    total_price = []
     user = User.find(user_id)
     user.items.map.map(&:original_price).sum
   end
