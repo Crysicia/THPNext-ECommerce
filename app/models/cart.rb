@@ -19,7 +19,6 @@ class Cart < ApplicationRecord
   def price
     total_price = []
     user = User.find(user_id)
-    user.items.map { |item| total_price << item.original_price }
-    total_price.sum
+    user.items.map.map(&:original_price).sum
   end
 end
