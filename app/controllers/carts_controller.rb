@@ -11,18 +11,22 @@ class CartsController < ApplicationController
     quantity = params[:quantity].to_i
 
     if params[:type].casecmp("increment").zero?
-      @cart.find_or_create_by(item: item).increment(:quantity, quantity).save
+      @cart.find_or_create_by(item_id: item).increment(:quantity, quantity).save
     else
       new_cart_item = @cart.find_or_create_by(item: item)
       new_cart_item.decrement(:quantity, quantity)
       new_cart_item.quantity = 1 if new_cart_item.quantity < 1
       new_cart_item.save
     end
+
+    redirect_to cart_path
   end
 
   def destroy
     item = params[:item].to_i
-    @cart.where(item: item).destroy_all
+    @cart.where(item_id: item).destroy_all
+
+    redirect_to cart_path
   end
 
   private

@@ -1,4 +1,44 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
-<%= link_to 'Add item', cart_path(item: Item.last, quantity: 42, type: 'increment'), method: :put %>
-<%= link_to 'Decrement item', cart_path(item: Item.last, quantity: 42, type: 'decrement'), method: :put %>
+
+<% unless @cart.empty? %>
+
+<table>
+<% @cart.each do |cart| %>
+
+  <tr>
+    <td>
+      <%= cart.item.name %>
+    </td>
+    <td>
+      <em> <%= cart.item.description %><br> </em>
+    </td>
+    <td>
+      <%= cart.item.original_price.round(2) %> €<br>
+    </td>
+    <td>
+      <img src="<%=cart.item.photo%>"><br><br>
+    </td>
+    <td>
+      quantité : <%= cart.quantity %>
+    </td>
+
+    <td>
+      <%= link_to 'Ajouter', cart_path(item: cart.item, quantity: 1, type: 'increment'), method: :put %>
+    </td>
+	<td>
+      <%= link_to 'Enlever une unité', cart_path(item: cart.item, quantity: 1, type: 'decrement'), method: :put %>
+    </td>
+    <td>
+      <%= link_to 'Je ne veux plus acheter!', cart_path(item: cart.item), method: :delete %>
+    </td>
+  </tr>
+
+<% end %>
+</table>
+
+<% else %>
+
+votre panier est vide.
+
+<% end %>
+
+<%= link_to "Acheter d'autres produits!", root_path %>

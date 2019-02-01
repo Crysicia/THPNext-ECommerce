@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  # binding.pry
   def index
     @items = Item.all
   end
