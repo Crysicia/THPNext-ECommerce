@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   before_action :set_cart
 
   def show
-    #@totalcartprice = Cart.current_user.price
+    @totalcartprice = current_user.carts.first.price unless current_user.carts.first.nil?
   end
 
   def update
