@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserMailer < ApplicationMailer
-  default from: 'from@example.com'
+  default from: 'thpstudent@gmail.com'
   def offer(user, text)
     @user = user
     @text = text
