@@ -26,6 +26,8 @@ class User < ApplicationRecord
   has_one :wishlist, through: :profile
   has_many :carts, dependent: :destroy
   has_many :items, through: :carts
+  has_many :orders, dependent: :destroy
+  
   include Notifications
 
   def offer(text)
