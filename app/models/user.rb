@@ -32,12 +32,16 @@ class User < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :items, through: :carts
   has_many :orders, dependent: :destroy
-
   after_create :init_profile
+  include Notifications
 
   private
 
   def init_profile
     build_profile.save(validate: false)
+  end
+
+  def offer(text)
+    UserMailer.offer(self, text).deliver_later
   end
 end
