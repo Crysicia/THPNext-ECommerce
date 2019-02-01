@@ -3,6 +3,15 @@
 Rails.application.routes.draw do
   root 'items#index'
 
+  namespace :administration do
+    resources :items
+  end
+
+  resource :cart, only: %i[show update destroy]
+  resource :profile, only: %i[show edit update destroy]
+  resources :charges
+  resources :items
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     confirmations: 'users/confirmations',
@@ -18,12 +27,4 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords',
     unlocks: 'admins/unlocks'
   }
-
-  resource :cart, only: %i[show update destroy]
-  resource :profile, only: %i[show edit update destroy]
-
-  namespace 'administration' do
-  end
-
-  resources :items
 end
