@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_112242) do
+ActiveRecord::Schema.define(version: 2019_01_31_175941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 2019_01_29_112242) do
     t.index ["item_id"], name: "index_item_categories_on_item_id"
   end
 
+  create_table "item_orders", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id", "order_id"], name: "index_item_orders_on_item_id_and_order_id", unique: true
+    t.index ["item_id"], name: "index_item_orders_on_item_id"
+    t.index ["order_id"], name: "index_item_orders_on_order_id"
+  end
+
   create_table "item_wishlists", force: :cascade do |t|
     t.bigint "item_id"
     t.bigint "wishlist_id"
@@ -77,6 +87,15 @@ ActiveRecord::Schema.define(version: 2019_01_29_112242) do
     t.datetime "updated_at", null: false
     t.boolean "has_discount", default: false
     t.integer "discount_percentage", default: 0
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "total_price"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -120,5 +139,6 @@ ActiveRecord::Schema.define(version: 2019_01_29_112242) do
 
   add_foreign_key "carts", "items"
   add_foreign_key "carts", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "wishlists", "profiles"
 end
