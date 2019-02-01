@@ -18,6 +18,6 @@ class Cart < ApplicationRecord
 
   def price
     user = User.find(user_id)
-    user.items.map.map(&:original_price).sum
+    user.items.map(&:original_price).sum
   end
 end
