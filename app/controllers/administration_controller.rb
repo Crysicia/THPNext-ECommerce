@@ -2,5 +2,6 @@
 
 class AdministrationController < ApplicationController
   before_action :authenticate_admin!
+  layout 'administration'
   def index; end
 end
