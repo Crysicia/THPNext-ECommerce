@@ -3,5 +3,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
 
-  def show; end
+  def show
+    # Cart.price(current_user)
+
+    UserMailer.offer.deliver_later
+  end
 end
