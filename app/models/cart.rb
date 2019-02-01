@@ -15,4 +15,9 @@
 class Cart < ApplicationRecord
   belongs_to :user
   belongs_to :item
+
+  def price
+    user = User.find(user_id)
+    user.items.map.map(&:original_price).sum
+  end
 end
