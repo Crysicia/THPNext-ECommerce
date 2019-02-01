@@ -26,6 +26,10 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-spec/example.txt
+/spec/examples.txt
 # Ignore application configuration
 /config/application.yml
+
+sendgrid.env
+
+/coverage/*
