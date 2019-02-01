@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ChargesController < ApplicationController
-  def new; end
+  def new
+    # all_items = current_user.cart.items
+    # @total_p = 0
+    # all_items.map{ |item| @total_p+= item.price}
+  end
 
   def create
     # Amount in cents
@@ -18,6 +22,18 @@ class ChargesController < ApplicationController
       description: 'Rails Stripe customer',
       currency: 'eur'
     )
+
+    @order = Order.create!(status: "payed", total_price: current_user.carts.first.price, user_id: current_user.id)
+
+    current_user.carts.each do |cart|
+      item = ItemOrder.new(item_id: cart.item_id, quantity: cart.quantity, order_id: @order.id)
+      item.save!
+    end
+
+    current_user.carts.destroy_all
+    # et quantity dans order
+
+    redirect_to orders_path
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path

@@ -4,7 +4,9 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cart
 
-  def show; end
+  def show
+    @totalcartprice = current_user.carts.first.price unless current_user.carts.first.nil?
+  end
 
   def update
     item = params[:item].to_i
