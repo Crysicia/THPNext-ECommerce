@@ -44,4 +44,15 @@ RSpec.describe Profile, type: :model do
     it { is_expected.to have_one(:wishlist) }
     it { is_expected.to belong_to(:profileable) }
   end
+
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
+    it { is_expected.to validate_presence_of(:adress_1) }
+    it { is_expected.to validate_presence_of(:postcode) }
+    it { is_expected.to validate_presence_of(:region) }
+    it { is_expected.to validate_presence_of(:city) }
+    it { is_expected.to validate_presence_of(:country) }
+    it { is_expected.to validate_presence_of(:telephone) }
+  end
 end

@@ -23,4 +23,13 @@
 class Profile < ApplicationRecord
   belongs_to :profileable, polymorphic: true
   has_one :wishlist, dependent: :destroy
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :adress_1, presence: true
+  validates :postcode, presence: true
+  validates :region, presence: true
+  validates :city, presence: true
+  validates :country, presence: true
+  validates :telephone, presence: true
 end
