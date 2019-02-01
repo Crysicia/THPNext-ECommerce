@@ -42,4 +42,10 @@ votre panier est vide.
 
 <% end %>
 
-<%= link_to "Acheter d'autres produits!", root_path %>
+<%= link_to "Acheter d'autres produits!", root_path %> <br>
+
+<br>
+le prix total est : <%=   @totalcartprice %>
+<br>
+
+<%= link_to "acheter", new_charge_path %>
