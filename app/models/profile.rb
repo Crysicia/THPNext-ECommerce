@@ -5,15 +5,15 @@
 # Table name: profiles
 #
 #  id               :bigint(8)        not null, primary key
-#  first_name       :string           not null
-#  last_name        :string           not null
-#  adress_1         :string           not null
+#  first_name       :string           default("0"), not null
+#  last_name        :string           default("0"), not null
+#  adress_1         :string           default("0"), not null
 #  adress_2         :string
-#  postcode         :integer          not null
+#  postcode         :integer          default(0), not null
 #  region           :string
-#  city             :string           not null
-#  country          :string           not null
-#  telephone        :string           not null
+#  city             :string           default("0"), not null
+#  country          :string           default("0"), not null
+#  telephone        :string           default("0"), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  profileable_type :string
@@ -23,4 +23,13 @@
 class Profile < ApplicationRecord
   belongs_to :profileable, polymorphic: true
   has_one :wishlist, dependent: :destroy
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :adress_1, presence: true
+  validates :postcode, presence: true
+  validates :region, presence: true
+  validates :city, presence: true
+  validates :country, presence: true
+  validates :telephone, presence: true
 end
