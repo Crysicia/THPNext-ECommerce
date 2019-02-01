@@ -15,4 +15,14 @@
 class Cart < ApplicationRecord
   belongs_to :user
   belongs_to :item
+
+  def price
+    total_price = []
+    user = User.find(user_id)
+    user.items.each do |item|
+      item.original_price
+      total_price << item.original_price
+    end
+    total_price = total_price.sum
+  end
 end
