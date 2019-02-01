@@ -5,15 +5,15 @@
 # Table name: profiles
 #
 #  id               :bigint(8)        not null, primary key
-#  first_name       :string           not null
-#  last_name        :string           not null
-#  adress_1         :string           not null
+#  first_name       :string           default("0"), not null
+#  last_name        :string           default("0"), not null
+#  adress_1         :string           default("0"), not null
 #  adress_2         :string
-#  postcode         :integer          not null
+#  postcode         :integer          default(0), not null
 #  region           :string
-#  city             :string           not null
-#  country          :string           not null
-#  telephone        :string           not null
+#  city             :string           default("0"), not null
+#  country          :string           default("0"), not null
+#  telephone        :string           default("0"), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  profileable_type :string
@@ -43,5 +43,16 @@ RSpec.describe Profile, type: :model do
   describe 'Associations' do
     it { is_expected.to have_one(:wishlist) }
     it { is_expected.to belong_to(:profileable) }
+  end
+
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
+    it { is_expected.to validate_presence_of(:adress_1) }
+    it { is_expected.to validate_presence_of(:postcode) }
+    it { is_expected.to validate_presence_of(:region) }
+    it { is_expected.to validate_presence_of(:city) }
+    it { is_expected.to validate_presence_of(:country) }
+    it { is_expected.to validate_presence_of(:telephone) }
   end
 end
