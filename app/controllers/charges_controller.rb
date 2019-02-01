@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class ChargesController < ApplicationController
-  def new; end
+  def new
+  
+      # all_items = current_user.cart.items
+      # @total_p = 0
+      # all_items.map{ |item| @total_p+= item.price}
+  end
 
   def create
     # Amount in cents
