@@ -5,11 +5,14 @@ class ChargesController < ApplicationController
     # all_items = current_user.cart.items
     # @total_p = 0
     # all_items.map{ |item| @total_p+= item.price}
+    @totalcartprice = current_user.carts.first.price unless current_user.carts.first.nil?
   end
 
   def create
+
     # Amount in cents
-    @amount = 500
+    @totalcartprice = current_user.carts.first.price unless current_user.carts.first.nil?
+    @amount = (@totalcartprice * 100).to_i
 
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],
@@ -19,7 +22,7 @@ class ChargesController < ApplicationController
     _charge = Stripe::Charge.create(
       customer: customer.id,
       amount: @amount,
-      description: 'Rails Stripe customer',
+      description: 'Order payement',
       currency: 'eur'
     )
 
