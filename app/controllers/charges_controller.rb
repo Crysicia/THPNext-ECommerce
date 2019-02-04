@@ -9,7 +9,6 @@ class ChargesController < ApplicationController
   end
 
   def create
-
     # Amount in cents
     @totalcartprice = current_user.carts.first.price unless current_user.carts.first.nil?
     @amount = (@totalcartprice * 100).to_i
