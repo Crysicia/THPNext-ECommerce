@@ -1,2 +1,22 @@
-<h1>Administration::Items#show</h1>
-<p>Find me in app/views/administration/items/show.html.erb</p>
+
+<h1>Page produit : <%= @item.name %></h1>
+
+<table>
+  <tr>
+    <td>
+      <em> <%= @item.description %><br> </em>
+    </td>
+    <td>
+      <%= @item.original_price.round(2) %> €<br>
+    </td>
+    <td>
+      <img src="<%=@item.photo%>"><br><br>
+    </td>
+    <td>
+      <%= link_to "modifier le produit", edit_administration_item_path(@item) %>
+    </td>
+    <td>
+      <%= link_to "supprimer le produit", administration_item_path(@item), method: :delete %>
+    </td>
+  </tr>
+</table>
