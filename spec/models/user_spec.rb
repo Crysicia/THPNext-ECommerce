@@ -15,6 +15,11 @@
 #  confirmation_sent_at   :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
 #
 
 require 'rails_helper'
@@ -35,11 +40,22 @@ RSpec.describe User, type: :model do
       it { is_expected.to have_db_column(:confirmation_sent_at).of_type(:datetime) }
       it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
       it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
+      it { is_expected.to have_db_column(:sign_in_count).of_type(:integer).with_options(null: false, default: 0) }
+      it { is_expected.to have_db_column(:current_sign_in_at).of_type(:datetime) }
+      it { is_expected.to have_db_column(:last_sign_in_at).of_type(:datetime) }
+      it { is_expected.to have_db_column(:current_sign_in_ip).of_type(:inet) }
+      it { is_expected.to have_db_column(:last_sign_in_ip).of_type(:inet) }
     end
 
     describe 'Associations' do
       it { is_expected.to have_one(:profile).dependent(:destroy) }
       it { is_expected.to have_one(:wishlist).through(:profile) }
+      it { is_expected.to have_many(:carts).dependent(:destroy) }
+      it { is_expected.to have_many(:items).through(:carts) }
+    end
+
+    describe 'After create' do
+      it 'Should have a profile'
     end
   end
 end

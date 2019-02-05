@@ -39,5 +39,6 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_many(:categories).through(:item_categories) }
     it { is_expected.to have_many(:item_wishlists).dependent(:destroy) }
     it { is_expected.to have_many(:wishlists).through(:item_wishlists) }
+    it { is_expected.to have_many(:carts).dependent(:destroy) }
   end
 end

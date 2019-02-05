@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_25_142837) do
+ActiveRecord::Schema.define(version: 2019_02_01_173827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2019_01_25_142837) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_carts_on_item_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -45,6 +55,17 @@ ActiveRecord::Schema.define(version: 2019_01_25_142837) do
     t.index ["category_id"], name: "index_item_categories_on_category_id"
     t.index ["item_id", "category_id"], name: "index_item_categories_on_item_id_and_category_id", unique: true
     t.index ["item_id"], name: "index_item_categories_on_item_id"
+  end
+
+  create_table "item_orders", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity"
+    t.index ["item_id", "order_id"], name: "index_item_orders_on_item_id_and_order_id", unique: true
+    t.index ["item_id"], name: "index_item_orders_on_item_id"
+    t.index ["order_id"], name: "index_item_orders_on_order_id"
   end
 
   create_table "item_wishlists", force: :cascade do |t|
@@ -69,16 +90,25 @@ ActiveRecord::Schema.define(version: 2019_01_25_142837) do
     t.integer "discount_percentage", default: 0
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.float "total_price"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "adress_1", null: false
+    t.string "first_name", default: "0", null: false
+    t.string "last_name", default: "0", null: false
+    t.string "adress_1", default: "0", null: false
     t.string "adress_2"
-    t.integer "postcode", null: false
+    t.integer "postcode", default: 0, null: false
     t.string "region"
-    t.string "city", null: false
-    t.string "country", null: false
-    t.string "telephone", null: false
+    t.string "city", default: "0", null: false
+    t.string "country", default: "0", null: false
+    t.string "telephone", default: "0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profileable_type"
@@ -97,6 +127,11 @@ ActiveRecord::Schema.define(version: 2019_01_25_142837) do
     t.datetime "confirmation_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -108,5 +143,8 @@ ActiveRecord::Schema.define(version: 2019_01_25_142837) do
     t.index ["profile_id"], name: "index_wishlists_on_profile_id"
   end
 
+  add_foreign_key "carts", "items"
+  add_foreign_key "carts", "users"
+  add_foreign_key "orders", "users"
   add_foreign_key "wishlists", "profiles"
 end

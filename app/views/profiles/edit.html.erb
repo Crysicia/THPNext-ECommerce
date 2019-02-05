@@ -1,0 +1,13 @@
+<h1>Profiles#edit</h1>
+<%= form_for @profile do |f| %>
+<%= f.text_field :first_name %>
+<%= f.text_field :last_name %>
+<%= f.text_field :adress_1 %>
+<%= f.text_field :adress_2 %>
+<%= f.number_field :postcode %>
+<%= f.text_field :region %>
+<%= f.text_field :city %>
+<%= f.text_field :country %>
+<%= f.text_field :telephone %>
+<%= f.submit %>
+<% end %>
