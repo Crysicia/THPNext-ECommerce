@@ -10,8 +10,16 @@
   </head>
 
   <body>
-    <%= render partial: "layouts/sidebar-admin" %> <!-- template-tarek should be modified later -->
+    <div class="wrapper">
+      <div class="d-flex">
+        <%= render partial: "layouts/sidebar-admin" %> <!-- template-tarek should be modified later -->
 
-    <%= yield %>
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>" style="color: red"><%= message %></div>
+        <% end %>
+        
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
