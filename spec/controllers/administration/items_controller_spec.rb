@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Administration::ItemsController, type: :controller do
-  describe "GET #index" do
-    it "returns http success" do
-      get :index
-      expect(response.status).to eq(200)
-    end
-  end
+  # describe "GET #items" do
+  #   it "returns http success" do
+  #     get :administration/items
+  #     expect(response.status).to eq(200)
+  #   end
+  # end
 
   describe "GET #show" do
     skip "returns http success" do

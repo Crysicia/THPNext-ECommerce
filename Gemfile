@@ -5,6 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 File.read('./.ruby-version')
 
+# remove?
+gem 'rails_db', '~> 2.0', '>= 2.0.6'
+
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.2', '>= 4.2.1'
 gem 'coffee-rails', '~> 4.2'

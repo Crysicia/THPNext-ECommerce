@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update destroy]
   resources :charges
   resources :items
+  resources :orders, only: %i[index create show]
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

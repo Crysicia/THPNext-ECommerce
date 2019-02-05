@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class ItemsController < ApplicationController
+  class ItemsController < AdministrationController
     def index
       @items = Item.all
     end
