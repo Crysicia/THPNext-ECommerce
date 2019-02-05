@@ -1,13 +1,32 @@
-<h1>Profiles#edit</h1>
-<%= form_for @profile do |f| %>
-<%= f.text_field :first_name %>
-<%= f.text_field :last_name %>
-<%= f.text_field :adress_1 %>
-<%= f.text_field :adress_2 %>
-<%= f.number_field :postcode %>
-<%= f.text_field :region %>
-<%= f.text_field :city %>
-<%= f.text_field :country %>
-<%= f.text_field :telephone %>
-<%= f.submit %>
-<% end %>
+<center>
+  <h1>Modifier vos informations</h1>
+  <div class="col-12 col-xl-6">
+  	<div class="card">
+  		<div class="card-header">
+        <div class="form-group">
+          <%= form_for @profile do |f| %>
+          <label class="form-label">Prénom :</label>
+            <%= f.text_field :first_name, class: "form-label form-control" %><br>
+            <label class="form-label">Nom </label>
+            <%= f.text_field :last_name, class: "form-label form-control" %><br>
+            <label class="form-label">Adresse 1</label>
+            <%= f.text_field :adress_1, class: "form-label form-control" %><br>
+            <label class="form-label">Adresse 2</label>
+            <%= f.text_field :adress_2, class: "form-label form-control" %><br>
+            <label class="form-label">Code postal</label>
+            <%= f.number_field :postcode, class: "form-label form-control" %><br>
+            <label class="form-label">Région</label>
+            <%= f.text_field :region, class: "form-label form-control" %><br>
+            <label class="form-label">Ville</label>
+            <%= f.text_field :city, class: "form-label form-control" %><br>
+            <label class="form-label">Pays</label>
+            <%= f.text_field :country, class: "form-label form-control" %><br>
+            <label class="form-label">Numéro de téléphone</label>
+            <%= f.text_field :telephone, class: "form-label form-control" %><br>
+            <%= f.submit class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>
