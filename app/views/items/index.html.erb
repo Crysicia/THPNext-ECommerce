@@ -11,7 +11,7 @@
     </div>
   </section>
 
-<<<<<<< HEAD
+
   <div class="container">
     <div class="row">
       <% @items.each do |item| %>
@@ -33,25 +33,3 @@
     </div>
   </div>
 </center>
-=======
-<table>
-
-<% @items.each do |item| %>
-  <tr>
-    <td>
-      <%= link_to item.name, item_path(item) %>
-    </td>
-    <td>
-      <em> <%= item.description %><br> </em>
-    </td>
-    <td>
-      <%= item.original_price.round(2) %> €<br>
-    </td>
-    <td>
-      <img src="<%=item.photo%>"><br><br>
-    </td>
-  </tr>
-<% end %>
-
-</table>
->>>>>>> development
