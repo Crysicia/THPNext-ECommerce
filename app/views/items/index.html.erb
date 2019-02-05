@@ -1,24 +1,34 @@
-<h1>Greenie : tous nos produits</h1>
+<center>
+  <section class="section light-gray-bg clearfix">
+    <div class="container">
+      <div class="row justify-content-lg-center">
+        <div class="col-lg-8">
+          <h1 class="text-center mt-4"><strong>Greenie</strong></h1>
+          <hr>
+          <p class="lead text-center">Tout nos produits zéro déchet qui vont changer votre impact écologique.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-
-<table>
-
-<% @items.each do |item| %>
-  <tr>
-    <td>
-      <%= link_to item.name, item_path(item) %>
-    </td>
-    <td>
-      <em> <%= item.description %><br> </em>
-    </td>
-    <td>
-      <%= item.original_price.round(2) %> €<br>
-    </td>
-    <td>
-      <img src="<%=item.photo%>"><br><br>
-    </td>
-  </tr>
-<% end %>
-
-</table>
+  <div class="container">
+    <div class="row">
+      <% @items.each do |item| %>
+      <div class="col">
+        <div class="card bg-light mb-3" style="width: 18rem;">
+          <img src="<%=item.photo%>">
+          <div class="card-body">
+            <h5 class="card-title"><%= item.name %></h5>
+            <p class="card-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 30ch"><%= item.description %><br></p>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Prix :<%= item.original_price.round(2) %>€</p>
+            <%= link_to 'Voir plus', item_path(item), class: "card-link btn btn-primary" %>
+            <%= link_to 'Ajouter au panier', cart_path(item: item, quantity: 1, type: 'increment'), method: :put, class: "card-link btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</center>
