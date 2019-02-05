@@ -2,6 +2,8 @@
 
 module Administration
   class ItemsController < AdministrationController
+    before_action :find_item, only: %i[show edit update]
+
     def index
       @items = Item.all
     end
@@ -16,13 +18,9 @@ module Administration
 
     def create
       @item = Item.new(item_params)
-
-      if item.save
-        flash[:notice] = "Item was successfully created!"
-        redirect_to items_path
-      else
-        render 'new'
-      end
+      Item.create(item_params)
+      flash[:notice] = "Item was successfully created!"
+      redirect_to administration_items_path
     end
 
     def edit
@@ -32,24 +30,25 @@ module Administration
     def update
       @item = Item.find(params[:id])
 
-      if item.update
-        flash[:notice] = "Item was successfully updated!"
-        redirect_to items_path
-      else
-        render 'edit'
-      end
+      @item.update(item_params)
+      flash[:notice] = "Item was successfully updated!"
+      redirect_to administration_items_path
     end
 
     def destroy
       @item = Item.find(params[:id])
       @item.destroy
-      redirect_to item_path
+      redirect_to administration_item_path
     end
 
     private
 
     def item_params
-      params.require(:item).permit(:name, :description, :original_price, :photo, :quantity, :has_discount, :discount_percentage)
+      params.require(:item).permit(:name, :description, :original_price, :photo)
+    end
+
+    def find_item
+      @item = Item.find(params[:id])
     end
   end
 end
