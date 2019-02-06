@@ -10,8 +10,12 @@
   </head>
 
   <body>
-    <%= render partial: "layouts/sidebar-admin" %> <!-- template-tarek should be modified later -->
-
-    <%= yield %>
+    <div class="wrapper">
+      <div class="d-flex">
+        <%= render partial: "layouts/sidebar-admin" %>
+        
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
