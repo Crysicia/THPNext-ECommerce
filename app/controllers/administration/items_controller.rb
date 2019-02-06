@@ -2,8 +2,6 @@
 
 module Administration
   class ItemsController < AdministrationController
-    # before_action :find_item, only: %i[show edit update]
-
     def index
       @items = Item.all
     end
@@ -45,8 +43,10 @@ module Administration
 
     def destroy
       @item = Item.find(params[:id])
-      @item.destroy
-      redirect_to administration_items_path
+      if @item.destroy
+        redirect_to administration_items_path
+        flash[:notice] = "L'article a bien été supprimé"
+      end
     end
 
     private
@@ -54,9 +54,5 @@ module Administration
     def item_params
       params.require(:item).permit(:name, :description, :original_price, :photo)
     end
-
-    # def find_item
-    #   @item = Item.find(params[:id])
-    # end
   end
 end
