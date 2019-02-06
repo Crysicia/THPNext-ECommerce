@@ -2,7 +2,6 @@
 
 module Administration
   class ProfilesController < AdministrationController
-
     def index
       @profiles = Profile.all
     end
@@ -29,6 +28,5 @@ module Administration
     def profile_params
       params.require(:profile).permit(:first_name, :last_name, :adress_1, :adress_2, :postcode, :region, :city, :country, :telephone)
     end
-
   end
 end
