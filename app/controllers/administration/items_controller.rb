@@ -43,10 +43,9 @@ module Administration
 
     def destroy
       @item = Item.find(params[:id])
-      if @item.destroy
-        redirect_to administration_items_path
-        flash[:notice] = "L'article a bien été supprimé"
-      end
+      @item.destroy
+      redirect_to administration_items_path
+      flash[:notice] = "L'article a bien été supprimé"
     end
 
     private
