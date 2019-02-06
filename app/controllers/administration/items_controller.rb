@@ -16,12 +16,12 @@ module Administration
 
     def create
       @item = Item.new(item_params)
-
-      if item.save
-        flash[:notice] = "Item was successfully created!"
-        redirect_to items_path
+      if @item.save
+        flash[:notice] = "L'article a été créé"
+        redirect_to administration_items_path
       else
-        render 'new'
+        redirect_to administration_items_path
+        flash[:notice] = "Il y a eu problème, veuillez vérifier les champs"
       end
     end
 
@@ -32,24 +32,26 @@ module Administration
     def update
       @item = Item.find(params[:id])
 
-      if item.update
-        flash[:notice] = "Item was successfully updated!"
-        redirect_to items_path
+      if @item.update(item_params)
+        flash[:notice] = "L'article a bien été modifié"
+        redirect_to administration_items_path
       else
-        render 'edit'
+        redirect_to administration_items_path
+        flash[:notice] = "Il y a eu problème, veuillez vérifier les champs"
       end
     end
 
     def destroy
       @item = Item.find(params[:id])
       @item.destroy
-      redirect_to item_path
+      redirect_to administration_items_path
+      flash[:notice] = "L'article a bien été supprimé"
     end
 
     private
 
     def item_params
-      params.require(:item).permit(:name, :description, :original_price, :photo, :quantity, :has_discount, :discount_percentage)
+      params.require(:item).permit(:name, :description, :original_price, :photo)
     end
   end
 end
