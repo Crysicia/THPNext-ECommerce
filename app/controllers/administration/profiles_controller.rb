@@ -16,15 +16,16 @@ module Administration
     end
 
     def update
+      @profile = Profile.find(params[:id])
 
-      @profile.update(profile_params)
-      # if profile.update
+      if @profile.update(profile_params)
         flash[:notice] = "Profile was successfully updated!"
         redirect_to administration_profiles_path
-      # else
-      #   render 'edit'
-      # end
+      else
+        render 'edit'
+      end
     end
+
     def profile_params
       params.require(:profile).permit(:first_name, :last_name, :adress_1, :adress_2, :postcode, :region, :city, :country, :telephone)
     end
