@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title mb-0">Vos informations personnel</h5>
+  </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Prénom - </strong><%= @profile.first_name %></li>
+      <li class="list-group-item"><strong>Nom - </strong><%= @profile.last_name %></li>
+      <li class="list-group-item"><strong>Adresse 1 - </strong><%= @profile.adress_1 %></li>
+      <li class="list-group-item"><strong>Adresse 2 - </strong><%= @profile.adress_2 %></li>
+      <li class="list-group-item"><strong>Code postale - </strong><%= @profile.postcode %></li>
+      <li class="list-group-item"><strong>Région - </strong><%= @profile.region %></li>
+      <li class="list-group-item"><strong>Ville - </strong><%= @profile.city %></li>
+      <li class="list-group-item"><strong>France - </strong><%= @profile.country %></li>
+      <li class="list-group-item"><strong>Téléphone - </strong><%= @profile.telephone %></li>
+    </ul>
+    <%= link_to "Modifier", edit_administration_profile_path(@profile), class: "btn btn-primary"%>
+</div>

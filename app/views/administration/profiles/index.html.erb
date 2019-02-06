@@ -1,0 +1,13 @@
+
+<div class="container">
+  <% @profiles.each do |profile|%>
+  <div class="row">
+    <div class="col">
+      <%= profile.first_name %> <%= profile.last_name %>
+    </div>
+    <div class="col">
+      <%= link_to "Modifier", edit_administration_profile_path(profile), class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+</div>
