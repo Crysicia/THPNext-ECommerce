@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Stock, type: :model do
@@ -5,7 +7,7 @@ RSpec.describe Stock, type: :model do
     subject(:new_stock) { described_class.new }
 
     it { is_expected.to have_db_column(:id).of_type(:integer).with_options(null: false) }
-    it { is_expected.to have_db_column(:quantity).of_type(:integer).with_options(presence:true, numericality: { only_integer: true, greater_than_or_equal: 0 }) }
+    it { is_expected.to have_db_column(:quantity).of_type(:integer).with_options(presence: true, numericality: { only_integer: true, greater_than_or_equal: 0 }) }
     it { is_expected.to have_db_column(:item_id).of_type(:integer) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
