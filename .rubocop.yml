@@ -10,6 +10,7 @@ AllCops:
     - 'db/schema.rb'
     - 'vendor/**/*'
     - 'config/environments/*.rb'
+    - 'config/routes.rb'
     - 'bin/*'
 
 Rails:
