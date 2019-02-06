@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount Lockup::Engine, at: '/lockup'
   root 'items#index'
 
   namespace :administration do
