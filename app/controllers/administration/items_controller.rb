@@ -18,11 +18,15 @@ module Administration
 
     def create
       @item = Item.new(item_params)
-      Item.create(item_params)
-      flash[:notice] = "Item was successfully created!"
-      redirect_to administration_items_path
+      if Item.create(item_params)
+        flash[:notice] = "Item was successfully created!"
+        redirect_to administration_items_path
+      else
+        flash[:notice] = "Il y a eu un problème"
+        render 'new'
+      end
     end
-
+    
     def edit
       @item = Item.find(params[:id])
     end
