@@ -1,22 +1,24 @@
 
-<h1>Page produit : <%= @item.name %></h1>
-
-<table>
-  <tr>
-    <td>
-      <em> <%= @item.description %><br> </em>
-    </td>
-    <td>
-      <%= @item.original_price.round(2) %> €<br>
-    </td>
-    <td>
-      <img src="<%=@item.photo%>"><br><br>
-    </td>
-    <td>
-      <%= link_to "modifier le produit", edit_administration_item_path(@item) %>
-    </td>
-    <td>
-      <%= link_to "supprimer le produit", administration_item_path(@item), method: :delete %>
-    </td>
-  </tr>
-</table>
+<center>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card bg-light mb-3" style="width: 18rem;">
+          <div class="card-title">
+            Page produit : <%= @item.name %>
+          </div>
+          <img src="<%=@item.photo%>" style="height: 150px;">
+          <div class="card-body">
+            <h5 class="card-title"><%= @item.name %></h5>
+            <p class="card-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 30ch"><%= @item.description %><br></p>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Prix :<%= @item.original_price.round(2) %>€</p>
+            <%= link_to "Modifier le produit", edit_administration_item_path(@item) %>
+            <%= link_to "supprimer le produit", administration_item_path(@item), method: :delete, class: "card-link btn btn-outline-danger" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</center>

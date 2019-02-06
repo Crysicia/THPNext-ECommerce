@@ -3,7 +3,9 @@
         <div class="sidebar-content">
           <a class="sidebar-brand" href="index.html">
             <i class="align-middle" data-feather="box"></i>
-
+            <% flash.each do |message_type, message| %>
+              <div class="alert alert-<%= message_type %>" style="color: red"><%= message %></div>
+            <% end %>
             <span class="align-middle">Greenie admins<br>--dashboard--</span>
           </a>
 
