@@ -33,6 +33,14 @@ Metrics/BlockLength:
 Style/ClassAndModuleChildren:
   Enabled: false
   
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/**/*.rb'
+
 RSpec/InstanceVariable:
   Exclude:
     - 'spec/**/*.rb'

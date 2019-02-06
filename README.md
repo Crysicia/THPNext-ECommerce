@@ -1,4 +1,4 @@
-# README (English & French mixed for this project)
+# README (English when possible)
 
 
 ## App specifications
@@ -17,11 +17,11 @@ This application structure will serve as the basis for your final projects.
 
 ## Process project :
 
-* Les besoins sont traduites en user stories. Les user stories débouchent sur des specs, qui sont divisées entre besoins et solutions.
+* Les besoins sont traduites en *user stories*. Les *user stories* débouchent sur des *specs*, qui sont divisées entre *besoins* et *solutions*.
 
-* Card → Issue → PR → Review → Merge
+* Card → Issue → PR → Review → Rebase & Merge
 
-* Pour les PR : 2 reviewers par Issue _Attribution Random, à faire tourner_
+* Pour les PR : 1 reviewer par Issue _Attribution Random, à faire tourner_
 
 
 ## Les branches : master et developement sont protégées [review obligatoire dans les paramètres]
@@ -44,54 +44,39 @@ $ `git pull origin development`
 
 $ `git checkout -b feature/[nom-feature]`
 
-$ Push ta branche que l'on voit qui bosse sur quoi : `git push --set-upstream origin feature/nom-feature`
+$ Push ta branche que l'on voit qui bosse sur quoi
+`git push --set-upstream origin feature/nom-feature`
 
 Code ta feature. Quand tu as fini de dev ta feature :
 
 $ `git checkout development`
 
-$ `git pull origin development` (_précaution pour être sûr d'être à jour)
+$ `git pull origin development` (_précaution pour être sûr d'être à jour_)
 
 $ `git checkout feature/[nom-feature]`
 
 $ `git merge development`
 
-$ `git add & commit`
+$ `git add & commit & push origin feature_nom-feature`
 
-$ Open pull request et choisir un reviewer (et Lucien en 2e reviewer (backup))
+$ Open pull request et choisir un reviewer
 
-Pull request: reviewer :
+$ git fetch --all (pour obtenir les dernières branches en local)
 
-git fetch --all (pour obtenir les dernières branches en local)
+On teste la branche en local
 
-on teste la branche en local
+Soit on approuve la PR, soit on request des changements
 
-soit on approuve la PR, soit on request des changements
-
-Le dev de la feature merge sa branche (`git squash`)
+Le dev de la feature peut merger sa branche
 
 
-## En cas d'urgence :
-
-Squash tes commits pour n'en faire qu'un seul :
-
-$ `git rebase -i <SHA du premier commit>`
-
-Remplace pick par squash SAUF pour le premier commit de la liste, sauvegarde et quitte.
-(Si tu te plantes, ne panique pas et regarde comment utiliser git reflog)
-
-Tu peux changer le nom du commit, sauvegarde et quitte encore.
-
-Force-push ta branche, ouvre une pull request et assigne un membre de l'équipe.
-
-
-## PUSH SUR MASTER :
+## ACHTUNG :
 
 On ne push JAMAIS directement sur master !
 
-Dès que l'on doit interagir avec master il faut le faire via une pull-request.
+Dès que l'on doit interagir avec master il faut le faire via une PR.
 
-Pour qu'une pull-request soit merge sur master le CI doit passer et un reviewer doit avoir approuvé la pull request.
+Pour qu'une PR  soit merge sur master le CI doit passer et un reviewer doit avoir approuvé la PR.
 
 
 ## RÉDIGER UN BON COMMIT
