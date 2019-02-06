@@ -26,7 +26,7 @@ module Administration
         flash[:notice] = "Il y a eu problème, veuillez vérifier les champs"
       end
     end
-
+    
     def edit
       @item = Item.find(params[:id])
     end
