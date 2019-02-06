@@ -12,7 +12,7 @@
                   
           <div class="card-body">
 
-    	      <%= form_for @item, url: administration_item_url(@item) do |f| %>
+    	      <%= form_for @item, url: administration_item_path(@item) do |f| %>
                 <div class="form-group">
                   <%= f.label "Changer le nom du produit:" %> <br>
     	            <%= f.text_field :name %> <br>
