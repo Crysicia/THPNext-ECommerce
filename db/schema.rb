@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_173827) do
+ActiveRecord::Schema.define(version: 2019_02_06_145453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,14 @@ ActiveRecord::Schema.define(version: 2019_02_01_173827) do
     t.index ["profileable_type", "profileable_id"], name: "index_profiles_on_profileable_type_and_profileable_id"
   end
 
+  create_table "stocks", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_stocks_on_item_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -146,5 +154,6 @@ ActiveRecord::Schema.define(version: 2019_02_01_173827) do
   add_foreign_key "carts", "items"
   add_foreign_key "carts", "users"
   add_foreign_key "orders", "users"
+  add_foreign_key "stocks", "items"
   add_foreign_key "wishlists", "profiles"
 end
