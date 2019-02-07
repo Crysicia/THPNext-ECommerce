@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :administration do
     resources :items
     resources :profiles
+    resources :users
   end
 
   resource :cart, only: %i[show update destroy]
