@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_06_145453) do
+ActiveRecord::Schema.define(version: 2019_02_07_134655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_02_06_145453) do
     t.text "description", null: false
     t.float "original_price", null: false
     t.string "photo"
-    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "has_discount", default: false
@@ -117,7 +116,7 @@ ActiveRecord::Schema.define(version: 2019_02_06_145453) do
   end
 
   create_table "stocks", force: :cascade do |t|
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
