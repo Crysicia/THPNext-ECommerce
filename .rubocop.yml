@@ -10,7 +10,6 @@ AllCops:
     - 'db/schema.rb'
     - 'vendor/**/*'
     - 'config/environments/*.rb'
-    - 'config/routes.rb'
     - 'bin/*'
 
 Rails:
@@ -30,6 +29,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'Guardfile'
     - 'vendor/bundle'
+    - 'config/routes.rb'
 
 Style/ClassAndModuleChildren:
   Enabled: false
