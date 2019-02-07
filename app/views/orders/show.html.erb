@@ -1,3 +1,35 @@
-<h1>commande</h1>
-
-<%#= link_to "acheter", new_charge_path %>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Produit</th>
+          <th>Quantity</th>
+          <th>Prix</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.item_orders.each do |item|%>
+        <tr>
+          <td><img src="<%= item.item.photo%>" style="width: 50px" class="img-order" alt=""></td>
+          <td><%= item.item.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.item.original_price.round(2) %>€</td>
+          <td><%= (item.item.original_price * item.quantity).round(2) %>€</td>
+        </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>Prix total : <%=@order.total_price.round(2)%>€</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
