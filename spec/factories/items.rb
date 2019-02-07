@@ -9,7 +9,6 @@
 #  description         :text             not null
 #  original_price      :float            not null
 #  photo               :string
-#  quantity            :integer          default(0)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  has_discount        :boolean          default(FALSE)
@@ -22,7 +21,6 @@ FactoryBot.define do
     description    { Faker::VForVendetta.quote }
     original_price { Faker::Number.decimal(2) }
     photo          { Faker::LoremPixel.image }
-    quantity       { Faker::Number.decimal(3) }
     has_discount   { Faker::Boolean.boolean }
     discount_percentage { Faker::Number.between(10, 50) }
 
