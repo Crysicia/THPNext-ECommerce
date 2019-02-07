@@ -27,16 +27,25 @@
                 <i class="align-middle" data-feather="book-open"></i>
                 </i> <span class="align-middle">Ajouter un produit</span>
               <% end %>
-
             </li>
             <li class="sidebar-item">
 
               <%= link_to administration_profiles_path, class: 'sidebar-brand' do %>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list align-middle"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg>
                 <i class="align-middle" data-feather="box"></i>
-                <span class="align-middle">Les profiles</span>
+                <span class="align-middle">Les profils</span>
               <% end %>
             </li>
+
+            <li class="sidebar-item">
+
+              <%= link_to administration_users_path, class: 'sidebar-brand' do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list align-middle"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg>
+                <i class="align-middle" data-feather="box"></i>
+                <span class="align-middle">Membres (NB à fusionner avec profils)</span>
+              <% end %>
+            </li>
+
           </ul>
 
           <div class="sidebar-bottom d-none d-lg-block">
