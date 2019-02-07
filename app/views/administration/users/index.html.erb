@@ -13,23 +13,47 @@
                   </div>
                   <div class="card-body">
 
-                    <thead>
-                      <tr>
-                        <th><!-- center css conflict --></th>
-                      </tr>
-                    </thead>
                     <table id="datatables-basic" class="table table-striped" style="width:100%">
+
+                      <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Créé le</th>
+                            <th>MàJ le</th>
+                            <th>Dernière connexion</th>
+                            <th>Connexion en cours</th>
+                            <th>IP en cours</th>
+                            <th>Dernière IP</th>
+                            <th>Modifier</th>
+                            <th>Supprimer</th>
+                        </tr>
+                      </thead>
 
                       <% @users.each do |user| %>
                         <tr>
                           <td> <%= user.email %></td>
+                          <td> <%= user.created_at %> </td>
+                          <td> <%= user.updated_at %> </td>
+                          <td> <%= user.last_sign_in_at %> </td>
+                          <td> <%= user.current_sign_in_at %> </td>
+                          <td> <%= user.current_sign_in_ip %> </td>
+                          <td> <%= user.last_sign_in_ip %> </td>
                           <td> <%= link_to "modifier", edit_administration_user_path(user) %> </td>
+                          <td> <%= link_to "supprimer", administration_user_path(user), method: :delete %> </td>
                         </tr>
                       <% end %>
 
                       <tfoot>
                         <tr>
                           <th>Email</th>
+                          <th>Créé le</th>
+                          <th>MàJ le</th>
+                          <th>Dernière connexion</th>
+                          <th>Connexion en cours</th>
+                          <th>IP en cours</th>
+                          <th>Dernière IP</th>
+                          <th>Modifier</th>
+                          <th>Supprimer</th>
                         </tr>
                       </tfoot>
                     </table>

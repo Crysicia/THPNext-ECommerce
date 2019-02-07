@@ -1,9 +1,23 @@
 
-<h2>Modifier utilisateur</h2>
-<br>
+<div class="main">
+  <main class="content">
+    <div class="container-fluid p-0">
+      <div class="row">
+        <div class="col-12 col-lg-6">
 
-<%= form_for @user, url: administration_user_path do |f| %>
-  <%= f.text_field :email %>
-  <%= f.submit %>
+        <p>Modifier utilisateur</p>
+                  
+          <div class="card-body">
 
-<% end %>
+            <h2>Modifier <strong> <%= @user.email %> </strong></h2>
+            <br>
+
+            <%= form_for @user, url: administration_user_path do |f| %>
+              <%= f.text_field :email %>
+              <%= f.submit "Mettre à jour" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

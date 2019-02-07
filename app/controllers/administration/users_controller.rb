@@ -22,6 +22,15 @@ module Administration
       end
     end
 
+    def destroy
+      @user = User.find(params[:id])
+      @user.delete
+      redirect_to administration_users_path
+      flash[:notice] = "Utilisateur supprimé"
+    end
+
+    private
+
     def user_params
       params.require(:user).permit!
     end
