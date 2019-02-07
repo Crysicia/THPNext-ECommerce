@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2019_02_07_134655) do
     t.text "description", null: false
     t.float "original_price", null: false
     t.string "photo"
-    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "has_discount", default: false
