@@ -32,6 +32,6 @@ class Item < ApplicationRecord
   private
 
   def link_stock
-    build_stock(quantity: 0).save
+    build_stock(quantity: 5).save
   end
 end

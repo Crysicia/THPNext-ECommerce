@@ -1,0 +1,31 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Produit</th>
+      <th>Quantity</th>
+      <th>Prix</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.item_orders.each do |item_order|%>
+    <tr>
+      <td><img src="<%= item_order.item.photo%>" style="width: 50px" class="img-order" alt=""></td>
+      <td><%= item_order.item.name %></td>
+      <td><%= item_order.quantity %></td>
+      <td><%= item_order.item.original_price.round(2) %>€</td>
+      <td><%= (item_order.item.original_price * item_order.quantity).round(2) %>€</td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Prix total : <%=@order.total_price.round(2)%>€</th>
+    </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Historique des commandes</h2>
+  <hr>
+  <% @orders.each do |order|%>
+  <div class="row">
+    <div class="col">
+      <p>Commande numéro : <%= order.id %></p>
+    </div>
+    <div class="col">
+      <p><%= order.total_price.round(2) %>€</p>
+    </div>
+    <div class="col">
+      <p><%= order.status %></p>
+    </div>
+    <div class="col">
+      <%= link_to "Changer le status", edit_administration_order_path(order), class: "btn btn-primary" %>
+    </div>
+    <div class="col">
+      <%= link_to "Voir plus", administration_order_path(order), class: "btn btn-primary" %>
+    </div>
+    <hr>
+  </div>
+  <% end %>
+</div>
