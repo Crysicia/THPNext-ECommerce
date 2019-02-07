@@ -23,12 +23,11 @@
           <div class="product-price">
             <%= @item.original_price.round(2) %>€</div>
           <hr>
-          <span>En stock</span>
           <div class="btn-group cart">
-            <% if item.stock.quantity > 0 %>
+            <% if @item.stock.quantity > 0 %>
             <%= link_to 'Ajouter au panier', cart_path(item: @item, quantity: 1, type: 'increment'), method: :put, class: "card-link btn btn-primary" %>
             <% else %>
-            <p>Rupture de stock</p>
+            <span>Rupture de stock</span>
             <% end %>
           </div>
         </div>
