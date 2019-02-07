@@ -9,7 +9,6 @@
 #  description         :text             not null
 #  original_price      :float            not null
 #  photo               :string
-#  quantity            :integer          default(0)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  has_discount        :boolean          default(FALSE)
@@ -27,4 +26,12 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :original_price, presence: true
+
+  after_create :link_stock
+
+  private
+
+  def link_stock
+    build_stock(quantity: 0).save
+  end
 end
