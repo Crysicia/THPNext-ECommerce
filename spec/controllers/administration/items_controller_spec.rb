@@ -3,12 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe Administration::ItemsController, type: :controller do
-  # describe "GET #items" do
-  #   it "returns http success" do
-  #     get :administration/items
-  #     expect(response.status).to eq(200)
-  #   end
-  # end
+  let(:admin) { create(:admin_confirmed) }
+
+  def sign_in_admin
+    sign_in admin
+  end
+
+  describe "GET #index" do
+    it "returns http success when signed in as admin" do
+      sign_in_admin
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+  end
 
   describe "GET #show" do
     skip "returns http success" do
