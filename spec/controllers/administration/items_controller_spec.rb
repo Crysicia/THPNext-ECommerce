@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Administration::ItemsController, type: :controller do
   let(:admin) { create(:admin_confirmed) }
+  let(:user) { create(:user_confirmed) }
 
   def sign_in_admin
     sign_in admin
@@ -14,6 +15,17 @@ RSpec.describe Administration::ItemsController, type: :controller do
       sign_in_admin
       get :index
       expect(response).to have_http_status(:success)
+    end
+
+    it "fails when not signed in" do
+      get :index
+      expect(response).not_to have_http_status(:success)
+    end
+
+    it "fails when user signed in" do
+      sign_in user
+      get :index
+      expect(response).not_to have_http_status(:success)
     end
   end
 
