@@ -26,4 +26,12 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :original_price, presence: true
+
+  after_create :link_stock
+
+  private
+
+  def link_stock
+    build_stock(quantity: 0).save
+  end
 end
