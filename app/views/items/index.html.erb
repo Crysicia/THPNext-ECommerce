@@ -28,7 +28,7 @@
             <p class="card-text">Prix :
               <%= item.original_price.round(2) %>€</p>
             <%= link_to 'Voir plus', item_path(item), class: "card-link btn btn-primary" %>
-            <% if item.stock.quantity > 0 %>
+            <% if item.quantity > 0 %>
             <%= link_to 'Ajouter au panier', cart_path(item: item, quantity: 1, type: 'increment'), method: :put, class: "card-link btn btn-primary" %>
             <% else %>
             <p>Ruture de stock</p>

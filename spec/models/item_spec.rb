@@ -13,6 +13,7 @@
 #  updated_at          :datetime         not null
 #  has_discount        :boolean          default(FALSE)
 #  discount_percentage :integer          default(0)
+#  quantity            :integer
 #
 
 require 'rails_helper'
@@ -30,6 +31,7 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_db_column(:discount_percentage).of_type(:integer).with_options(default: 0) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
+    it { is_expected.to have_db_column(:quantity).of_type(:integer) }
   end
 
   describe 'Associations' do
@@ -38,6 +40,5 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_many(:item_wishlists).dependent(:destroy) }
     it { is_expected.to have_many(:wishlists).through(:item_wishlists) }
     it { is_expected.to have_many(:carts).dependent(:destroy) }
-    it { is_expected.to have_one(:stock).dependent(:destroy) }
   end
 end
