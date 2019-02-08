@@ -24,7 +24,7 @@
             <%= @item.original_price.round(2) %>€</div>
           <hr>
           <div class="btn-group cart">
-            <% if @item.stock.quantity > 0 %>
+            <% if @item.quantity > 0 %>
             <%= link_to 'Ajouter au panier', cart_path(item: @item, quantity: 1, type: 'increment'), method: :put, class: "card-link btn btn-primary" %>
             <% else %>
             <span>Rupture de stock</span>
