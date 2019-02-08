@@ -10,6 +10,11 @@ module Administration
       @order = Order.find(params[:id])
     end
 
-    def edit; end
+    def update
+      @order = Order.find(params[:id])
+
+      @order.update(status: "Confirmée")
+      redirect_to administration_orders_path
+    end
   end
 end

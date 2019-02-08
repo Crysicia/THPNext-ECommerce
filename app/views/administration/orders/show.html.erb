@@ -21,8 +21,10 @@
   </tbody>
   <tfoot>
     <tr>
-      <th></th>
-      <th></th>
+      <%if @order.status == "Confirmée"%>
+      <th><%= link_to 'Valider la commande', administration_order_path(order: @order, status: "Confirmé"), method: :put, class: "card-link btn btn-primary" %></th>
+      <% end %>
+      <th>Commande :  <%= @order.status%> </th>
       <th></th>
       <th></th>
       <th>Prix total : <%=@order.total_price.round(2)%>€</th>
