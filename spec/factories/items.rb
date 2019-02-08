@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: items
@@ -13,7 +12,7 @@
 #  updated_at          :datetime         not null
 #  has_discount        :boolean          default(FALSE)
 #  discount_percentage :integer          default(0)
-#  quantity            :integer
+#  quantity            :integer          default(0)
 #
 
 FactoryBot.define do

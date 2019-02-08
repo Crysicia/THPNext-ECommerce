@@ -9,15 +9,13 @@ class ChargesController < ApplicationController
   end
 
   def create
-
-      current_user.carts.each do |cart|
-        if cart.quantity <= item.quantity
-          continue
-        else
-          flash[:error] = "Certains produits ne sont plus en stock"
-          redirect_to cart_path
-        end
+    current_user.carts.each do |cart|
+      unless cart.quantity <= cart.item.quantity
+        flash[:error] = "Certains produits ne sont plus en stock"
+        redirect_to cart_path(id: current_user.id)
+        return
       end
+    end
 
     @totalcartprice = current_user.carts.first.price unless current_user.carts.first.nil?
     @amount = (@totalcartprice * 100).to_i

@@ -4,6 +4,8 @@ class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cart
 
+  def index; end
+
   def show
     @totalcartprice = current_user.carts.first.price unless current_user.carts.first.nil?
   end
@@ -14,13 +16,9 @@ class CartsController < ApplicationController
 
     new_cart_item = @cart.find_or_create_by(item_id: item)
 
-    puts '//////////////////'
-    puts new_cart_item.inspect
-    puts '////////////////////////////'
-
     if params[:type].casecmp("increment").zero?
 
-      if (new_cart_item.quantity.to_i + quantity) < new_cart_item.item.quantity
+      if (new_cart_item.quantity + quantity) <= new_cart_item.item.quantity
         new_cart_item.increment(:quantity, quantity).save
       else
         flash[:error] = "impossible d'ajouter au panier"
