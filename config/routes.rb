@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :administration do
+    get 'orders/index'
+    get 'orders/show'
+  end
   mount Lockup::Engine, at: '/lockup'
   root 'items#index'
 
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
     resources :items
     resources :profiles
     resources :users
+    resources :orders
   end
 
   resource :cart, only: %i[show update destroy]
