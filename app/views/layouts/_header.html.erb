@@ -10,11 +10,11 @@
             <a class="nav-link" href="/">Greenie<span class="sr-only">(current)</span></a>
           </li>
           <% if user_signed_in? %>
-            <li><%= link_to " Mon profile", profile_path, class: "nav-link" %></li>
+            <li><%= link_to " Mon profil", profile_path, class: "nav-link" %></li>
             <li><%= link_to " Mes commandes", orders_path, class: "nav-link" %></li>
             <li><%= link_to " Mon panier", cart_path, class: "nav-link" %></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
-          <% else %>
+          <% elsif !admin_signed_in? %>
             <li><%= link_to "Connexion", user_session_path, class: "nav-link" %></li>
           <% end %>
         </ul>
