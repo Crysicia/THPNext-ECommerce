@@ -13,7 +13,7 @@
 #  updated_at          :datetime         not null
 #  has_discount        :boolean          default(FALSE)
 #  discount_percentage :integer          default(0)
-#  quantity            :integer
+#  quantity            :integer          default(0)
 #
 
 require 'rails_helper'
