@@ -1,51 +1,44 @@
 <h1>Mon panier</h1>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Produit</th>
+          <th>Quantity</th>
+          <th>Prix</th>
+          <th>Total</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart.each do |cart| %>
+        <tr>
+          <td><img src="<%= cart.item.photo %>" style="width: 50px" class="img-order" alt=""></td>
+          <td><%= cart.item.name %></td>
+          <td><%= cart.quantity %></td>
+          <td><%= cart.item.original_price.round(2) %>€</td>
+          <td><%= (cart.item.original_price * cart.quantity).round(2) %>€</td>
+          <td><%= link_to '+', cart_path(item: cart.item, quantity: 1, type: 'increment'), method: :put, class: "btn btn-primary" %></td>
+          <td><%= link_to '-', cart_path(item: cart.item, quantity: 1, type: 'decrement'), method: :put, class: "btn btn-primary" %></td>
+          <td><%= link_to 'Supprimer!', cart_path(item: cart.item), method: :delete, class: "btn btn-primary" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total : <%=   @totalcartprice %>€</th>
+        </tr>
+      </tfoot>
 
-<% unless @cart.empty? %>
-
-<table>
-<% @cart.each do |cart| %>
-
-  <tr>
-    <td>
-      <%= cart.item.name %>
-    </td>
-    <td>
-      <em> <%= cart.item.description %><br> </em>
-    </td>
-    <td>
-      <%= cart.item.original_price.round(2) %> €<br>
-    </td>
-    <td>
-      <img src="<%=cart.item.photo%>"><br><br>
-    </td>
-    <td>
-      quantité : <%= cart.quantity %>
-    </td>
-
-    <td>
-      <%= link_to 'Ajouter', cart_path(item: cart.item, quantity: 1, type: 'increment'), method: :put %>
-    </td>
-	<td>
-      <%= link_to 'Enlever une unité', cart_path(item: cart.item, quantity: 1, type: 'decrement'), method: :put %>
-    </td>
-    <td>
-      <%= link_to 'Je ne veux plus acheter!', cart_path(item: cart.item), method: :delete %>
-    </td>
-  </tr>
-
-<% end %>
-</table>
-
-<% else %>
-
-votre panier est vide.
-
-<% end %>
-
-<%= link_to "Acheter d'autres produits!", root_path %> <br>
-
-<br>
-le prix total est : <%=   @totalcartprice %>
-<br>
-
-<%= link_to "acheter", new_charge_path %>
+    </table>
+    <% unless @cart.empty? %>
+    <%= link_to "Acheter", new_charge_path, class: "btn btn-primary" %>
+    <% else %>
+    <%= link_to "Acheter d'autres produits!", root_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
