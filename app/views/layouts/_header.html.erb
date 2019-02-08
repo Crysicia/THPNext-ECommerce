@@ -18,8 +18,14 @@
             <li><%= link_to "Connexion", user_session_path, class: "nav-link" %></li>
           <% end %>
         </ul>
+        <% if admin_signed_in? %>
+        <span class="navbar-text">
+          <%= link_to "Dashboard", administration_items_path %><br />
+        </span>
+        <% else %>
         <span class="navbar-text">
           <%= link_to "Admin", new_admin_session_path %><br />
         </span>
+        <% end %>
       </div>
     </nav>
