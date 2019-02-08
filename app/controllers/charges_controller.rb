@@ -32,6 +32,12 @@ class ChargesController < ApplicationController
       currency: 'eur'
     )
 
+    current_user.carts.each do |cart|
+      new_quantity = cart.item.quantity - cart.quantity
+      item = Item.find(cart.item.id)
+      item.update(quantity: new_quantity)
+    end
+
     @order = Order.create!(status: "payed", total_price: current_user.carts.first.price, user_id: current_user.id)
 
     current_user.carts.each do |cart|
@@ -43,6 +49,7 @@ class ChargesController < ApplicationController
     # et quantity dans order
 
     redirect_to orders_path
+    nil
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
