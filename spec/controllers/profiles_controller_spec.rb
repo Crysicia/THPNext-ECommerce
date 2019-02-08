@@ -34,7 +34,7 @@ RSpec.describe ProfilesController, type: :controller do
 
     it "succeeds when authentified" do
       login_user
-      get :edit, params: { id: user.id }
+      get :edit
       expect(response).to have_http_status(:success)
     end
   end
