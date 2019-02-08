@@ -1,1 +1,18 @@
-<h2>coucou</h2>
+<div class="container">
+  <h2>Historique des commandes</h2>
+  <hr>
+  <% @orders.each do |order|%>
+  <div class="row">
+    <div class="col">
+      <p>Commande numéro : <%= order.id %></p>
+    </div>
+    <div class="col">
+      <p><%= order.total_price.round(2) %>€</p>
+    </div>
+    <div class="col">
+      <%= link_to "Voir plus", order_path(order.id), class: "btn btn-primary" %>
+    </div>
+    <hr>
+  </div>
+  <% end %>
+</div>

@@ -1,31 +1,37 @@
-</section>
-    <div class="container-fluid">
-        <div class="content-wrapper">
-    		<div class="item-container">
-    			<div class="container">
-            <hr>
-            <h1 class="page-title text-center"><%= @item.name %></h1>
-            <hr>
+<div class="container-fluid">
+  <div class="content-wrapper">
+    <div class="item-container">
+      <div class="container">
+        <hr>
+        <h1 class="page-title text-center">
+          <%= @item.name %>
+        </h1>
+        <hr>
 
-            </div>
-            <div class="row">
-              <div class="col">
-  							  <img id="item-display" style="height: 300px" src="<%=@item.photo%>" alt=""></img>
-  				    </div>
-      				<div class="col">
-      					<h4 class="product-title">Description :</h4>
-      					<div class="product-desc"><%= @item.description %></div>
-      					<hr>
-                <h4 class="product-title">Prix :</h4>
-      					<div class="product-price"><%= @item.original_price.round(2) %>€</div>
-      					<hr>
-                <span>En stock</span>
-      					<div class="btn-group cart">
-      					   <%= link_to 'Ajouter au panier', cart_path(item: @item, quantity: 1, type: 'increment'), method: :put, class: "card-link btn btn-primary" %>
-      					</div>
-      				</div>
-            </div>
-    			</div>
-    		</div>
-    	</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <img id="item-display" style="height: 300px" src="<%=@item.photo%>" alt="">
+        </div>
+        <div class="col">
+          <h4 class="product-title">Description :</h4>
+          <div class="product-desc">
+            <%= @item.description %>
+          </div>
+          <hr>
+          <h4 class="product-title">Prix :</h4>
+          <div class="product-price">
+            <%= @item.original_price.round(2) %>€</div>
+          <hr>
+          <div class="btn-group cart">
+            <% if @item.quantity > 0 %>
+            <%= link_to 'Ajouter au panier', cart_path(item: @item, quantity: 1, type: 'increment'), method: :put, class: "card-link btn btn-primary" %>
+            <% else %>
+            <span>Rupture de stock</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</div>

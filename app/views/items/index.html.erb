@@ -18,13 +18,21 @@
         <div class="card bg-light mb-3" style="width: 18rem;">
           <img src="<%=item.photo%>" style="height: 150px;">
           <div class="card-body">
-            <h5 class="card-title"><%= item.name %></h5>
-            <p class="card-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 30ch"><%= item.description %><br></p>
+            <h5 class="card-title">
+              <%= item.name %>
+            </h5>
+            <p class="card-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 30ch">
+              <%= item.description %><br></p>
           </div>
           <div class="card-body">
-            <p class="card-text">Prix :<%= item.original_price.round(2) %>€</p>
+            <p class="card-text">Prix :
+              <%= item.original_price.round(2) %>€</p>
             <%= link_to 'Voir plus', item_path(item), class: "card-link btn btn-primary" %>
+            <% if item.quantity > 0 %>
             <%= link_to 'Ajouter au panier', cart_path(item: item, quantity: 1, type: 'increment'), method: :put, class: "card-link btn btn-primary" %>
+            <% else %>
+            <p>Ruture de stock</p>
+            <% end %>
           </div>
         </div>
       </div>

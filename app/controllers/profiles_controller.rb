@@ -6,7 +6,9 @@ class ProfilesController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    @profile = current_user.profile
+  end
 
   def update
     @profile.update(profile_params)
